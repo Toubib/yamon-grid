@@ -1,0 +1,25 @@
+.container
+  .main
+    - @alerts.each do |name, json|
+      %h3
+        %a{:href => CONFIG[name]['href']}= name
+      - if json.empty? then
+        %p Aucune alerte.
+      - else
+        .table-responsive
+          %table.table-condensed.table-bordered.table-hover
+            %thead
+              %tr
+                %th serveur
+                %th service
+                %th date
+                %th durée
+                %th sortie
+            %tbody
+              - json.each do |i|
+                %tr
+                  %td= i['hostname']
+                  %td= i['description']
+                  %td= i['check_date2']
+                  %td= i['duration']
+                  %td= i['service_output']
